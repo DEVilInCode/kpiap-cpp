@@ -71,29 +71,24 @@ public:
     void display()
     {
         Stack* tmp = head;
-        try
-        {
+        
             if (tmp == nullptr)
                 throw NullErr();
-        }
-        catch (const std::exception&)
-        {
-            std::cout << ex.getError() << std::endl;
-        }
-        
-        do
-        {
-            std::cout << tmp->data << ' ';
-            tmp = tmp->next;
-        } while (tmp != nullptr);
+            do
+            {
+                std::cout << tmp->data << ' ';
+                tmp = tmp->next;
+            } while (tmp != nullptr);
             std::cout << std::endl;
+       
+        
+        
         
     }
 
     T operator[](size_t position)
     {
         T data = NULL;
-        try {
             if (head == nullptr)
                 throw NullErr();
 
@@ -106,11 +101,6 @@ public:
             for(;position > 0; position--)
                 tmp = tmp->next;
             data = tmp->data;
-        }
-        catch (Exception& ex)
-        {
-            std::cout << ex.getError() << std::endl;
-        }
 
         return data;
     }
@@ -125,9 +115,18 @@ protected:
 int main()
 {
     Stack<int> stack;
-    stack.push(2);
-    stack.push(3);
-    stack.push(4);
-    std::cout << stack[3] << std::endl;
-    stack.display();
+    
+    try {
+        stack.push(2);
+        stack.push(3);
+        stack.push(4);
+
+        std::cout << stack[3] << std::endl;
+         stack.display();
+    }
+    catch (Exception& ex)
+    {
+        std::cout << ex.getError() << std::endl;
+    }
+   
 }
